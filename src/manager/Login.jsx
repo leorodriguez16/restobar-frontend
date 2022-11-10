@@ -13,14 +13,15 @@ import {
   Password,
   imagen,
   Logo,
-} from "./Login.style";
+  Pregister,
+} from "./style/Login.style";
 import Register from "./Register";
 
 export default function Login() {
   const erUser = /^[a-zA-ZÀ-ÿ\s]{1,40}$/;
 
   return (
-    <div>
+    <>
       <div>
         <Logo src={imagen} alt="a" />
         <Router>
@@ -28,7 +29,9 @@ export default function Login() {
           <Paragraph>
             ¿No tienes una cuenta?{" "}
             <strong>
-              <Link to="register">Registrate</Link>
+              <Link to="register">
+                <Pregister>Registrate</Pregister>
+              </Link>
             </strong>
           </Paragraph>
           <Routes>
@@ -38,17 +41,18 @@ export default function Login() {
       </div>
       <Formik
         initialValues={{
-          nombre: "",
+          contraseña: "",
           correo: "",
         }}
         validate={(values) => {
           let errores = {};
 
-          // validacion nombre
-          if (!values.nombre) {
-            errores.nombre = "Por favor ingresa un nombre";
-          } else if (!erUser.test(values.nombre)) {
-            errores.nombre = "El nombre no puede contener numeros o signos";
+          // validacion contraseña
+          if (!values.contraseña) {
+            errores.contraseña = "Por favor ingresa un contraseña";
+          } else if (!erUser.test(values.contraseña)) {
+            errores.contraseña =
+              "El contraseña no puede contener numeros o signos";
           }
 
           if (!values.correo) {
@@ -58,6 +62,7 @@ export default function Login() {
         }}
         onSubmit={(valores, { resetForm }) => {
           resetForm();
+          console.log("submit");
           // llamar api, conectarse , y enviar los valores
         }}
       >
@@ -71,21 +76,21 @@ export default function Login() {
           touched,
         }) => (
           <Container>
-            <Form onSubmit={handleSubmit}>
+            {/* <Form onSubmit={handleSubmit}>
               <DivInput>
-                <Label htmlFor="Usuario">Usuario</Label>
+                <Label htmlFor="Contraseña">Contraseña</Label>
                 <Input
                   type="text"
-                  id="nombre"
-                  name="nombre"
-                  placeholder="Ingrese su nombre"
-                  value={values.nombre}
+                  id="contraseña"
+                  name="contraseña"
+                  placeholder="Ingrese su contraseña"
+                  value={values.contraseña}
                   onChange={handleChange}
                   onBlur={handleBlur}
                 ></Input>
               </DivInput>
-              {touched.nombre && errors.nombre && (
-                <Error>{errors.nombre}</Error>
+              {touched.contraseña && errors.contraseña && (
+                <Error>{errors.contraseña}</Error>
               )}
               <DivInput>
                 <Label htmlFor="Correo">Correo</Label>
@@ -103,12 +108,12 @@ export default function Login() {
               {touched.correo && errors.correo && (
                 <Error>{errors.correo}</Error>
               )}
-              <Button>Enviar</Button>
+              <Button typeOf="submit">Enviar</Button>
               <Password>¿Se te olvido tu contraseña?</Password>
-            </Form>
+            </Form> */}
           </Container>
         )}
       </Formik>
-    </div>
+    </>
   );
 }

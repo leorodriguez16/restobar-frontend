@@ -2,14 +2,14 @@ import styled from "styled-components";
 import logo from "../assets/img/logo.png";
 
 export const Container = styled.div({
-  minHeight: "100vh",
+  maxHeight: "100vh",
   display: "flex",
   alignItems: "flexStart",
   justifyContent: "center",
 });
 export const Form = styled.form({
   minWidth: "600px",
-  height: "50vh",
+  height: "maxHeight",
   marginTop: "25px",
   background: "#fff",
   borderRadius: "5px",
@@ -25,6 +25,10 @@ export const Label = styled.label({
   fontSize: "14px",
   marginBottom: "5px",
   color: "#1f1f1f",
+});
+export const Labelr = styled(Label)({
+  display: "flex",
+  justifyContent: "flex-start",
 });
 export const Input = styled.input({
   fontFamily: "Roboto",
@@ -65,7 +69,6 @@ export const Error = styled.div({
   margin: "0.5rem",
   marginTop: "-1.5rem",
 });
-export const Title = styled.h2({});
 export const Paragraph = styled.p({
   display: "block",
   fontWeight: "40",
@@ -90,4 +93,11 @@ export const Logo = styled.img({
   borderRadius: "50%",
   margin: "1rem",
 });
+export const Pregister = styled(Password)({
+  display: "inline-block",
+  fontWeight: "50",
+  fontSize: "1,5rem",
+  margin: "0.5rem",
+});
 export const imagen = logo;
+export const Title = styled.h2({});
