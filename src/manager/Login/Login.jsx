@@ -1,6 +1,7 @@
 import React from "react";
 import { Formik } from "formik";
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
+import Register from "../Register/Register";
 import {
   Container,
   Error,
@@ -14,16 +15,16 @@ import {
   imagen,
   Logo,
   Pregister,
-} from "./style/Login.style";
-import Register from "./Register";
+} from "./login.styled.js";
 
 export default function Login() {
   const erUser = /^[a-zA-ZÀ-ÿ\s]{1,40}$/;
 
   return (
     <>
+      {/* header */}
       <div>
-        <Logo src={imagen} alt="a" />
+        <Logo src={imagen} alt="logo" />
         <Router>
           <h2>Ingrese a su cuenta</h2>
           <Paragraph>
@@ -76,7 +77,7 @@ export default function Login() {
           touched,
         }) => (
           <Container>
-            {/* <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit}>
               <DivInput>
                 <Label htmlFor="Contraseña">Contraseña</Label>
                 <Input
@@ -110,7 +111,7 @@ export default function Login() {
               )}
               <Button typeOf="submit">Enviar</Button>
               <Password>¿Se te olvido tu contraseña?</Password>
-            </Form> */}
+            </Form>
           </Container>
         )}
       </Formik>

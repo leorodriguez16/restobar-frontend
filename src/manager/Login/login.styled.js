@@ -26,10 +26,7 @@ export const Label = styled.label({
   marginBottom: "5px",
   color: "#1f1f1f",
 });
-export const Labelr = styled(Label)({
-  display: "flex",
-  justifyContent: "flex-start",
-});
+
 export const Input = styled.input({
   fontFamily: "Roboto",
   width: "100%",
