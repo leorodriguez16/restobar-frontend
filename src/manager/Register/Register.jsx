@@ -1,116 +1,66 @@
-import React from "react";
-import { Formik } from "formik";
-import { Container, Error, Button, DivInput } from "../Login/login.styled";
-import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+import React, { useState } from "react";
+import { Container } from "../Login/login.styled";
 import InputRegister from "./components/Input";
-import {
-  FormReg,
-  GrupInput,
-  IconValidation,
-  InputReg,
-  LabelReg,
-} from "./register.style";
+import { BtnRegister, FormReg } from "./register.style";
+
+const erObj = {
+  erName: /^[a-zA-ZÀ-ÿ\s]{4,16}$/, // Letras y espacios, pueden llevar acentos.
+  erPassword: /^.{4,12}$/, // 4 a 12 digitos.
+  erEmail: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, //email obligario @
+};
+
 const Register = () => {
-  const erUser = /^[a-zA-ZÀ-ÿ\s]{1,40}$/;
+  const [userName, setuserName] = useState({ campo: "", valido: true });
+  const [email, setEmail] = useState({ campo: "", valido: true });
+  const [passwordOne, setPasswordOne] = useState({ campo: "", valido: true });
+  const [passwordTwo, setPasswordTwo] = useState({ campo: "", valido: true });
+
   return (
     <>
-      <Formik
-        initialValues={{
-          email: "",
-          password: "",
-          name: "",
-          valPassword: "",
-        }}
-        validate={(values) => {
-          let errores = {};
-          // validacion name
-          if (!values.name) {
-            errores.name = "Por favor ingrese su nombre";
-          } else if (!erUser.test(values.name)) {
-            errores.name = "El nombre no puede contener numeros y o espacios";
-          }
-          if (!values.email) {
-            errores.email = "Por favor ingresa un correo";
-          }
-          if (!values.password) {
-            errores.password = "Por favor ingresa una contraseña";
-          } else if (values.password.split("")) {
-            errores.password = "Contraseña corta";
-          }
-
-          return errores;
-        }}
-      >
-        {({
-          values,
-          errors,
-          handleChange,
-          handleSubmit,
-          handleBlur,
-          touched,
-        }) => (
-          <Container>
-            {
-              <FormReg>
-                <InputRegister
-                  label="Nombre"
-                  type="email"
-                  name="email"
-                  placeholder="Ingrese su email"
-                  value={values.email}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-                {touched.name && errors.name && <Error>{errors.name}</Error>}
-                <InputRegister
-                  label="Correo"
-                  type="email"
-                  name="email"
-                  placeholder="Ingrese su email"
-                  value={values.email}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-                {touched.email && errors.email && <Error>{errors.email}</Error>}
-                <DivInput>
-                  <LabelReg htmlFor="password">Contraseña</LabelReg>
-                  <GrupInput>
-                    <InputReg
-                      type="password"
-                      name="password"
-                      placeholder="Ingrese su contraseña"
-                      value={values.password}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      // cambiar type:email
-                    ></InputReg>
-                    <IconValidation icon={faCheckCircle} />
-                  </GrupInput>
-                </DivInput>
-                {touched.password && errors.password && (
-                  <Error>{errors.password}</Error>
-                )}
-                <DivInput>
-                  <LabelReg htmlFor="password">Confirma contraseña</LabelReg>
-                  <GrupInput>
-                    <InputReg
-                      type="password"
-                      name="valpassword"
-                      placeholder="Ingrese su contraseña"
-                      // cambiar type:email
-                    ></InputReg>
-                    <IconValidation icon={faCheckCircle} />
-                  </GrupInput>
-                </DivInput>
-                {touched.contraseña && errors.contraseña && (
-                  <Error>{errors.contraseña}</Error>
-                )}
-                <Button>Enviar</Button>
-              </FormReg>
-            }
-          </Container>
-        )}
-      </Formik>
+      <Container>
+        <FormReg>
+          <InputRegister
+            state={userName}
+            changeStatus={setuserName}
+            label="Nombre"
+            type="email"
+            name="email"
+            placeholder="Ingrese su email"
+            error="Por favor ingrese un valor"
+            er={erObj.erName}
+          />
+          <InputRegister
+            state={email}
+            changeStatus={setEmail}
+            label="Correo"
+            type="email"
+            name="email"
+            placeholder="Ingrese su correo"
+            error="Por favor ingrese un correo"
+            er={erObj.erEmail}
+          />
+          <InputRegister
+            state={passwordOne}
+            changeStatus={setPasswordOne}
+            label="Contraseña"
+            type="password"
+            name="password"
+            placeholder="Ingrese su contraseña"
+            error="Por favor ingrese su contraseña"
+            er={erObj.erPassword}
+          />
+          <InputRegister
+            state={passwordTwo}
+            changeStatus={setPasswordTwo}
+            label="Repetir contraseña"
+            type="email"
+            name="email"
+            placeholder="Ingrese su correo"
+            error="Las contraseñas no coinciden"
+          />
+          <BtnRegister>Enviar</BtnRegister>
+        </FormReg>
+      </Container>
     </>
   );
 };
