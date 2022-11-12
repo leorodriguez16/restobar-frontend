@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Formik } from "formik";
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
 import Register from "../Register/Register";
@@ -78,7 +77,7 @@ export default function Login() {
           touched,
         }) => (
           <Container>
-            <Form onSubmit={handleSubmit}>
+            {/* <Form onSubmit={handleSubmit}>
               <DivInput>
                 <Label htmlFor="Contraseña">Contraseña</Label>
                 <Input
@@ -112,7 +111,7 @@ export default function Login() {
               )}
               <Button typeOf="submit">Enviar</Button>
               <Password>¿Se te olvido tu contraseña?</Password>
-            </Form>
+            </Form> */}
           </Container>
         )}
       </Formik>
