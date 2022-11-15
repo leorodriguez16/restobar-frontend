@@ -1,10 +1,10 @@
 import "./App.css";
-import Login from "./manager/Login/Login";
+import Rutas from "./Rutas";
 
 function App() {
   return (
     <div className="App">
-      <Login />
+      <Rutas />
     </div>
   );
 }

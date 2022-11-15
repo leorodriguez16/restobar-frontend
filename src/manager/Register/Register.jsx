@@ -1,17 +1,12 @@
 import React from "react";
 import { Formik } from "formik";
-import { Container } from "../Login/login.styled";
+import { Container, imagen } from "../Login/login.styled";
 import InputRegister from "./components/Input";
-import {
-  BtnRegister,
-  DivBtn,
-  ErrorReg,
-  FormReg,
-  GrupInput,
-} from "./register.style";
+import { BtnRegister, ErrorReg, FormReg, GrupInput } from "./register.style";
+import Header from "../Login/components/Header";
 
 const erObj = {
-  erName: /^[a-zA-Z0-9\-]{4,16}$/, // Letras y espacios, pueden llevar acentos.
+  erName: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
   erPassword: /^.{4,12}$/, // 4 a 12 digitos.
   erEmail: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, //email obligario @
 };
@@ -19,6 +14,14 @@ const erObj = {
 const Register = () => {
   return (
     <>
+      <Header
+        img={imagen}
+        imgAlt="logo"
+        h2="Registrarse"
+        p="¿Ya tienes una cuenta?"
+        link="Ingresar"
+        path="/login"
+      />
       <Formik
         initialValues={{
           name: "",
@@ -29,20 +32,23 @@ const Register = () => {
         validate={(values) => {
           let errores = {};
 
+          //validate name
+          if (!values.name) {
+            errores.name = "Por favor ingrese un nombre";
+          } else if (!erObj.erName.test(values.name)) {
+            errores.name = "El nombre no puede contener numeros";
+          }
+          //validate email
+          if (!values.email) {
+            errores.email = "Por favor ingresa un correo";
+          }
           //validate password
           if (!values.password) {
             errores.password = "Por favor ingresa una contraseña";
           } else if (!erObj.erPassword.test(values.password)) {
             errores.password = "La contraseña tiene que ser de 4 a 12 digitos ";
           }
-          //validate name
-          if (!values.name) {
-            errores.name = "Por favor ingrese un nombre";
-          }
-          //validate email
-          if (!values.email) {
-            errores.email = "Por favor ingresa un correo";
-          }
+          // validate repeatPassword
           if (!values.repeatPassword) {
             errores.repeatPassword = "Por favor repita una contraseña";
           } else if (values.repeatPassword !== values.password) {

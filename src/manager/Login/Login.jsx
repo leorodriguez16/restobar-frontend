@@ -1,6 +1,7 @@
 import { Formik } from "formik";
-import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
+import { Link, Route, Router, Routes } from "react-router-dom";
 import Register from "../Register/Register";
+import Header from "./components/Header";
 import {
   Container,
   Error,
@@ -9,36 +10,27 @@ import {
   Form,
   Input,
   Label,
-  Paragraph,
   Password,
   imagen,
-  Logo,
-  Pregister,
 } from "./login.styled.js";
 
 export default function Login() {
-  const erUser = /^[a-zA-ZÀ-ÿ\s]{1,40}$/;
-
   return (
     <>
       {/* header */}
-      <div>
-        <Logo src={imagen} alt="logo" />
-        <Router>
-          <h2>Ingrese a su cuenta</h2>
-          <Paragraph>
-            ¿No tienes una cuenta?{" "}
-            <strong>
-              <Link to="register">
-                <Pregister>Registrate</Pregister>
-              </Link>
-            </strong>
-          </Paragraph>
-          <Routes>
-            <Route path="/register" element={<Register />} />
-          </Routes>
-        </Router>
-      </div>
+      <Header
+        img={imagen}
+        imgAlt="logo"
+        h2="Ingrese a su cuenta"
+        p="¿No tienes una cuenta?"
+        link="Registrate"
+        path="/register"
+      />
+
+      <Routes>
+        <Route path="/register" element={<Register />}></Route>
+      </Routes>
+
       {/* main */}
       <Formik
         initialValues={{
@@ -51,11 +43,7 @@ export default function Login() {
           // validacion contraseña
           if (!values.contraseña) {
             errores.contraseña = "Por favor ingresa un contraseña";
-          } else if (!erUser.test(values.contraseña)) {
-            errores.contraseña =
-              "El contraseña no puede contener numeros o signos";
           }
-
           if (!values.correo) {
             errores.correo = "Por favor ingresa un correo";
           }
@@ -63,7 +51,8 @@ export default function Login() {
         }}
         onSubmit={(valores, { resetForm }) => {
           resetForm();
-          console.log("submit");
+          console.log(valores);
+
           // llamar api, conectarse , y enviar los valores
         }}
       >
@@ -77,22 +66,7 @@ export default function Login() {
           touched,
         }) => (
           <Container>
-            {/* <Form onSubmit={handleSubmit}>
-              <DivInput>
-                <Label htmlFor="Contraseña">Contraseña</Label>
-                <Input
-                  type="text"
-                  id="contraseña"
-                  name="contraseña"
-                  placeholder="Ingrese su contraseña"
-                  value={values.contraseña}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                ></Input>
-              </DivInput>
-              {touched.contraseña && errors.contraseña && (
-                <Error>{errors.contraseña}</Error>
-              )}
+            <Form onSubmit={handleSubmit}>
               <DivInput>
                 <Label htmlFor="Correo">Correo</Label>
                 <Input
@@ -109,9 +83,26 @@ export default function Login() {
               {touched.correo && errors.correo && (
                 <Error>{errors.correo}</Error>
               )}
+              <DivInput>
+                <Label htmlFor="Contraseña">Contraseña</Label>
+                <Input
+                  type="password"
+                  id="contraseña"
+                  name="contraseña"
+                  placeholder="Ingrese su contraseña"
+                  value={values.contraseña}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                ></Input>
+              </DivInput>
+              {touched.contraseña && errors.contraseña && (
+                <Error>{errors.contraseña}</Error>
+              )}
               <Button typeOf="submit">Enviar</Button>
-              <Password>¿Se te olvido tu contraseña?</Password>
-            </Form> */}
+              <Password>
+                <Link>¿Se te olvido tu contraseña?</Link>
+              </Password>
+            </Form>
           </Container>
         )}
       </Formik>

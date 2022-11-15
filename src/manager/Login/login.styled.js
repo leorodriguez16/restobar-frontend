@@ -9,12 +9,11 @@ export const Container = styled.div({
 });
 export const Form = styled.form({
   minWidth: "600px",
-  height: "maxHeight",
   marginTop: "25px",
   background: "#fff",
   borderRadius: "5px",
   padding: "20px",
-  boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px",
+  boxShadow: "0 50px 70px -20px rgba(0, 0, 0, 0.8)",
 });
 export const DivInput = styled.div({
   marginBottom: "20px",
@@ -89,6 +88,7 @@ export const Logo = styled.img({
   height: "10rem",
   borderRadius: "50%",
   margin: "1rem",
+  boxShadow: "0 6px 36px -20px rgb(0 0 0 / 80%)",
 });
 export const Pregister = styled(Password)({
   display: "inline-block",
