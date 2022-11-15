@@ -56,6 +56,10 @@ const Register = () => {
           }
           return errores;
         }}
+        onSubmit={(valores, { resetForm }) => {
+          resetForm();
+          // llamar api, conectarse , y enviar los valores
+        }}
       >
         {({
           values,

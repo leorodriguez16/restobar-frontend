@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Logo, Paragraph, Pregister } from "../login.styled";
 
-const Header = ({ changeState, img, imgAlt, h2, p, link, path }) => {
+const Header = ({ img, imgAlt, h2, p, link, path }) => {
   return (
     <div>
       {" "}
@@ -13,9 +13,7 @@ const Header = ({ changeState, img, imgAlt, h2, p, link, path }) => {
           {p}
           <strong>
             <Pregister>
-              <Link onClick={changeState} to={path}>
-                {link}
-              </Link>
+              <Link to={path}>{link}</Link>
             </Pregister>
           </strong>
         </Paragraph>

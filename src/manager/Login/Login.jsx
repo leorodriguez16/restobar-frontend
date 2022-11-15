@@ -1,5 +1,5 @@
 import { Formik } from "formik";
-import { Link, Route, Router, Routes } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import Register from "../Register/Register";
 import Header from "./components/Header";
 import {
@@ -27,10 +27,6 @@ export default function Login() {
         path="/register"
       />
 
-      <Routes>
-        <Route path="/register" element={<Register />}></Route>
-      </Routes>
-
       {/* main */}
       <Formik
         initialValues={{
@@ -51,8 +47,6 @@ export default function Login() {
         }}
         onSubmit={(valores, { resetForm }) => {
           resetForm();
-          console.log(valores);
-
           // llamar api, conectarse , y enviar los valores
         }}
       >

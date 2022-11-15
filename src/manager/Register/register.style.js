@@ -9,7 +9,7 @@ export const FormReg = styled.form({
   background: "#fff",
   borderRadius: "5px",
   padding: "25px",
-  boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px",
+  boxShadow: "0 50px 70px -20px rgba(0, 0, 0, 0.8)",
   "@media(max-width:880px)": {
     gridTemplateColumns: "1fr",
     maxWidth: "500",
