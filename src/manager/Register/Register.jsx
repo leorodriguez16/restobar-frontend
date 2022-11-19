@@ -1,10 +1,9 @@
 import React from "react";
 import { Formik } from "formik";
 import { Container, imagen } from "../Login/login.styled";
-import InputRegister from "./components/Input";
 import { BtnRegister, ErrorReg, FormReg, GrupInput } from "./register.style";
-import Header from "../Login/components/Header";
-
+import Header from "../components/Header";
+import Input from "../components/Input";
 const erObj = {
   erName: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
   erPassword: /^.{4,12}$/, // 4 a 12 digitos.
@@ -73,7 +72,7 @@ const Register = () => {
             {
               <FormReg onSubmit={handleSubmit}>
                 <GrupInput>
-                  <InputRegister
+                  <Input
                     id="name"
                     label="Nombre"
                     type="text"
@@ -88,7 +87,7 @@ const Register = () => {
                   )}
                 </GrupInput>
                 <GrupInput>
-                  <InputRegister
+                  <Input
                     id="email"
                     label="Correo"
                     type="email"
@@ -103,7 +102,7 @@ const Register = () => {
                   )}
                 </GrupInput>
                 <GrupInput>
-                  <InputRegister
+                  <Input
                     id="password"
                     label="Contraseña"
                     type="password"
@@ -113,13 +112,14 @@ const Register = () => {
                     val={values.password}
                     placeholder="Ingrese su contraseña"
                   />
+
                   {touched.password && errors.password && (
                     <ErrorReg>{errors.password}</ErrorReg>
                   )}
                 </GrupInput>
 
                 <GrupInput>
-                  <InputRegister
+                  <Input
                     id="repeatPassword"
                     label="Repetir contraseña"
                     type="password"
@@ -134,7 +134,7 @@ const Register = () => {
                   )}
                 </GrupInput>
 
-                <BtnRegister>Enviar</BtnRegister>
+                <BtnRegister type="submit">Enviar</BtnRegister>
               </FormReg>
             }
           </Container>

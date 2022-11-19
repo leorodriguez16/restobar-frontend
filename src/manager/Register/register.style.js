@@ -9,7 +9,7 @@ export const FormReg = styled.form({
   background: "#fff",
   borderRadius: "5px",
   padding: "25px",
-  boxShadow: "0 50px 70px -20px rgba(0, 0, 0, 0.8)",
+  boxShadow: "0 20px 64px -1px rgb(0 0 0 / 53%)",
   "@media(max-width:880px)": {
     gridTemplateColumns: "1fr",
     maxWidth: "500",
@@ -43,8 +43,6 @@ export const InputReg = styled.input((props) => ({
   lineHeight: "45px",
   "&:focus": {
     outline: "none",
-    border:
-      props.valido === "false" ? "3px solid #e92b2d" : "2px solid #0085FF",
   },
 }));
 export const ErrorReg = styled.p({

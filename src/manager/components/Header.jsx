@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Logo, Paragraph, Pregister } from "../login.styled";
+import { Logo, Paragraph, Pregister } from "../Login/login.styled";
 
 const Header = ({ img, imgAlt, h2, p, link, path }) => {
   return (

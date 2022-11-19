@@ -1,6 +1,11 @@
 import styled from "styled-components";
 import logo from "../assets/img/logo.png";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+const colors = {
+  primary: "#005aff",
+  second: "#fff",
+  third: "#1f1f1f",
+};
 export const Container = styled.div({
   maxHeight: "100vh",
   display: "flex",
@@ -10,10 +15,10 @@ export const Container = styled.div({
 export const Form = styled.form({
   minWidth: "600px",
   marginTop: "25px",
-  background: "#fff",
+  background: colors.second,
   borderRadius: "5px",
   padding: "20px",
-  boxShadow: "0 50px 70px -20px rgba(0, 0, 0, 0.8)",
+  boxShadow: "0 20px 64px -1px rgb(0 0 0 / 53%)",
 });
 export const DivInput = styled.div({
   marginBottom: "20px",
@@ -23,7 +28,7 @@ export const Label = styled.label({
   fontWeight: "600",
   fontSize: "14px",
   marginBottom: "5px",
-  color: "#1f1f1f",
+  color: colors.third,
 });
 
 export const Input = styled.input({
@@ -34,7 +39,7 @@ export const Input = styled.input({
   fontSize: "18px",
   padding: "10px",
   margin: "5px",
-  color: "#1f1f1f",
+  color: colors.third,
   "&:focus": {
     outline: "none",
     border: "2px solid #0085FF",
@@ -54,6 +59,9 @@ export const Button = styled.button({
   fontSize: "16px",
   "&:focus": {
     backgroundColor: "#0051ff",
+  },
+  "&:hover": {
+    backgroundColor: "#005aff",
   },
 });
 export const Error = styled.div({
@@ -95,6 +103,27 @@ export const Pregister = styled(Password)({
   fontWeight: "50",
   fontSize: "1,5rem",
   margin: "0.5rem",
+  color: "#005aff",
+  "&:hover": {
+    color: "#0085FF",
+    cursor: "pointer",
+  },
+});
+export const DivInputIcon = styled.div({
+  position: "relative",
+  zIndex: "90",
+});
+export const IconEye = styled(FontAwesomeIcon)({
+  position: "absolute",
+  right: "10px",
+  bottom: "19px",
+  zIndex: "100",
+  fontSize: "18px",
+  marginLeft: "1px",
+  color: "#005aff",
+  "&:hover": {
+    color: "#0085FF",
+    cursor: "pointer",
+  },
 });
 export const imagen = logo;
-export const Title = styled.h2({});

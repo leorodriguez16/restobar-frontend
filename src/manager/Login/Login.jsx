@@ -1,7 +1,7 @@
 import { Formik } from "formik";
-import { Link, Route, Routes } from "react-router-dom";
-import Register from "../Register/Register";
-import Header from "./components/Header";
+import { Link } from "react-router-dom";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import Header from "../components/Header";
 import {
   Container,
   Error,
@@ -12,9 +12,16 @@ import {
   Label,
   Password,
   imagen,
+  DivInputIcon,
+  IconEye,
 } from "./login.styled.js";
-
+import { useState } from "react";
 export default function Login() {
+  const [showPsw, setShowIcon] = useState(false);
+  const changeState = () => {
+    setShowIcon(!showPsw);
+  };
+
   return (
     <>
       {/* header */}
@@ -71,7 +78,6 @@ export default function Login() {
                   value={values.correo}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  // cambiar type:correo
                 ></Input>
               </DivInput>
               {touched.correo && errors.correo && (
@@ -79,22 +85,28 @@ export default function Login() {
               )}
               <DivInput>
                 <Label htmlFor="Contraseña">Contraseña</Label>
-                <Input
-                  type="password"
-                  id="contraseña"
-                  name="contraseña"
-                  placeholder="Ingrese su contraseña"
-                  value={values.contraseña}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                ></Input>
+                <DivInputIcon>
+                  <Input
+                    type={showPsw ? "text" : "password"}
+                    id="contraseña"
+                    name="contraseña"
+                    placeholder="Ingrese su contraseña"
+                    value={values.contraseña}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  ></Input>
+                  <IconEye
+                    onClick={changeState}
+                    icon={showPsw ? faEye : faEyeSlash}
+                  />
+                </DivInputIcon>
               </DivInput>
               {touched.contraseña && errors.contraseña && (
                 <Error>{errors.contraseña}</Error>
               )}
-              <Button typeOf="submit">Enviar</Button>
+              <Button type="submit">Enviar</Button>
               <Password>
-                <Link>¿Se te olvido tu contraseña?</Link>
+                <Link to="/password">¿Se te olvido tu contraseña?</Link>
               </Password>
             </Form>
           </Container>

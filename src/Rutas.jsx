@@ -1,9 +1,8 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Login from "./manager/Login/Login";
-import { Password } from "./manager/Login/login.styled";
+import Password from "./manager/Password/Password";
 import Register from "./manager/Register/Register";
-
 const Rutas = () => {
   return (
     <div>
